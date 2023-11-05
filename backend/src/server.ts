@@ -3,6 +3,9 @@ import morgan from 'morgan'
 import cors from 'cors'
 import type * as http from 'http'
 
+// Routes
+import usersRouter from './users/routers'
+
 export class Server {
   private server!: http.Server
   private readonly express = express()
@@ -16,6 +19,9 @@ export class Server {
     this.express.use(express.urlencoded({extended: true}))
     this.express.use(cors())
     if (process.env.NODE_ENV === 'development') this.express.use(morgan('dev'))
+
+    // Routes
+    this.express.use('/auth', usersRouter)
   }
 
   get getServer (): http.Server {
