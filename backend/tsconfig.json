@@ -11,5 +11,5 @@
     "resolveJsonModule": true,
     "experimentalDecorators": true,
   },
-  "include": ["src/**/*", "tests/**/*"]
+  "include": ["src/**/*", "tests/**/*", "prisma/**/*"]
 }

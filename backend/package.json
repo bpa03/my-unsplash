@@ -4,19 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npx dotenv -e ./.env.development -- npx ts-node-dev ./src/start.ts"
+    "dev": "npx dotenv -e ./.env.development -- npx ts-node-dev ./src/start.ts",
+    "migrate:dev": "npx dotenv -e ./.env.development -- npx prisma migrate dev"
+  },
+  "prisma": {
+    "seed": "npx dotenv -e ./.env.development -- ts-node ./prisma/seed.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^5.5.2",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "dotenv-cli": "^7.3.0",
     "express": "^4.18.2",
     "helmet": "^7.0.0",
     "http-status-code": "^2.1.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "prisma": "^5.5.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.15",

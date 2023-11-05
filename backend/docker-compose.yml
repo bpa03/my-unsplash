@@ -1,0 +1,27 @@
+services:
+  backend:
+    image: node:18-alpine
+    working_dir: /app
+    container_name: backend
+    command: sh -c "npm run dev"
+    stdin_open: true
+    depends_on:
+      - database
+    tty: true
+    env_file:
+      - ./.env.development
+    volumes:
+      - ./:/app
+    ports:
+      - 8080:8080
+    expose:
+      - 8080
+  database:
+    image: mysql:5.7
+    container_name: database
+    restart: always
+    ports:
+      - "13306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=my-unplash-db
