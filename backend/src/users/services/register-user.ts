@@ -1,21 +1,25 @@
-import {type User} from '@prisma/client'
+import {type User, Gender} from '@prisma/client'
 import type UserRepository from '../repository/user-repository'
-import bcrypt from 'bcrypt'
+import encryptPassword from '../../shared/lib/encrypt-password'
+import {UserDupException} from '../exceptions/user-dup-exception'
 
 export class RegisterUser {
   constructor (private readonly userRepository: UserRepository) {}
 
   public async exec ({email, lastname, name, password}: { email: string, password: string, name: string, lastname: string }): Promise<User> {
-    const salt = await bcrypt.genSalt(15)
-    const encryptedPassword = await bcrypt.hash(password, salt)
+    const userExists = await this.userRepository.findByEmail(email)
 
-    const newUser = await this.userRepository.createUser({
+    if (userExists) {
+      throw new UserDupException(`User with email ${email} already exists`)
+    }
+
+    const encryptedPassword = await encryptPassword(password)
+    return await this.userRepository.createUser({
       password: encryptedPassword,
       email,
+      name,
       lastname,
-      name
+      gender: Gender.MALE
     })
-
-    return newUser
   }
 }
