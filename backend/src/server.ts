@@ -2,6 +2,7 @@ import express from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
 import type * as http from 'http'
+import {prisma} from '../prisma/client'
 
 // Routes
 import usersRouter from './users/routers'
@@ -30,9 +31,13 @@ export class Server {
 
   async listen (): Promise<void> {
     await new Promise<void>((resolve) => {
-      this.server = this.express.listen(this.express.get('port'), () => {
-        console.log('Application running on http://localhost:' + this.express.get('port'))
-        resolve()
+      prisma.$connect().then(() => {
+        this.server = this.express.listen(this.express.get('port'), () => {
+          console.log('Application running on http://localhost:' + this.express.get('port'))
+          resolve()
+        })
+      }).catch((err) => {
+        console.log('Error on connect to database: ', err)
       })
     })
   }
