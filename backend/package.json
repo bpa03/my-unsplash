@@ -22,6 +22,7 @@
     "express": "4.18.2",
     "helmet": "7.0.0",
     "http-status-code": "2.1.0",
+    "jose": "^5.1.0",
     "morgan": "1.10.0",
     "prisma": "5.5.2"
   },
