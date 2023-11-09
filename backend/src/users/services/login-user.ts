@@ -21,8 +21,8 @@ export class LoginUser {
       throw new BadCredentialsException('Wrong email or password')
     }
 
-    const {gender, name, lastname, email: userEmail} = user
-    const payload = {gender, name, lastname, email: userEmail}
+    const {gender, name, lastname, email: userEmail, id} = user
+    const payload = {gender, name, lastname, email: userEmail, id}
     return await generateJwt(payload)
   }
 }

@@ -6,6 +6,7 @@ import {prisma} from '../prisma/client'
 
 // Routes
 import usersRouter from './users/routers'
+import imagesRouter from './images/routers'
 
 export class Server {
   private server!: http.Server
@@ -18,11 +19,12 @@ export class Server {
     // Middlewares
     this.express.use(express.json())
     this.express.use(express.urlencoded({extended: true}))
-    this.express.use(cors())
+    this.express.use(cors({credentials: true}))
     if (process.env.NODE_ENV === 'development') this.express.use(morgan('dev'))
 
     // Routes
     this.express.use('/auth', usersRouter)
+    this.express.use('/images', imagesRouter)
   }
 
   get getServer (): http.Server {
