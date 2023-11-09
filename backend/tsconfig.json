@@ -10,6 +10,7 @@
     "outDir": "dist",
     "resolveJsonModule": true,
     "experimentalDecorators": true,
+    "typeRoots": ["types/index.d.ts", "node_modules/@types"]
   },
-  "include": ["src/**/*", "tests/**/*", "prisma/**/*"]
+  "include": ["src/**/*", "tests/**/*", "prisma/**/*", "types/index.d.ts"]
 }

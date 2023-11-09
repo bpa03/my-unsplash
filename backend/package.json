@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npx dotenv -e ./.env.development -- npx ts-node-dev ./src/start.ts",
+    "dev": "npx dotenv -e ./.env.development -- npx ts-node-dev --files ./src/start.ts",
     "migrate:dev": "npx dotenv -e ./.env.development -- npx prisma migrate dev"
   },
   "prisma": {
