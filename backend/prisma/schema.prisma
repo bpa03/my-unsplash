@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
 }
 
@@ -22,11 +22,12 @@ model User {
 }
 
 model Image {
-  userId    String
-  id        String   @id @default(uuid())
-  imageUrl  String   @db.VarChar(300)
-  createdAt DateTime @default(now())
-  User      User     @relation(references: [id], fields: [userId])
+  userId      String
+  id          String   @id @default(uuid())
+  description String   @db.VarChar(450) @default("")
+  imageUrl    String   @db.VarChar(300)
+  createdAt   DateTime @default(now())
+  User        User     @relation(references: [id], fields: [userId])
 }
 
 enum Gender {
