@@ -21,7 +21,7 @@ export class VerifyTokenMiddleware extends Middleware {
 
     const user = await verifyJwt(token) as JwtUserPayload
 
-    if (!user.id) {
+    if (!user?.id) {
       res.status(httpStatusCode.UNAUTHORIZED).json({
         error: {
           code: 'invalid_token',
