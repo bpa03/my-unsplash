@@ -11,4 +11,14 @@ export default class ImagesRepository implements ImageRepositoryI {
       }
     })
   }
+
+  public async save ({userId, description, imageUrl}: { userId: string, description: string, imageUrl: string }): Promise<Image> {
+    return await this.imagesModel.create({
+      data: {
+        userId,
+        imageUrl,
+        description
+      }
+    })
+  }
 }
