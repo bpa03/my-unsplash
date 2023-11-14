@@ -15,9 +15,9 @@ const ListOfUnsplashPhotos: FC<object> = () => {
   return (
     <>
       {isLoading && <h1>Loading photos...</h1>}
-      {photos && Array.isArray(photos) && (
+      {photos && Array.isArray(photos.results) && (
         <ListOfPhotos>
-          {photos.map(({id, urls: {full}}) => (
+          {photos.results.map(({id, urls: {full}}) => (
             <Image
               src={full}
               alt="unsplash-photos"

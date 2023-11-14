@@ -98,3 +98,9 @@ export interface Urls {
   thumb:    string;
   small_s3: string;
 }
+
+export interface SearchPhotosFromUnsplashDto {
+  total:       number;
+  total_pages: number;
+  results:     UnsplashPhoto[];
+}
