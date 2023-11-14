@@ -14,7 +14,7 @@ const notoSans = Noto_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'My Unplash'
+  title: 'My Unsplash'
 }
 
 export default function RootLayout({
@@ -27,7 +27,9 @@ export default function RootLayout({
       <body className={notoSans.className}>
         <NextAuthProvider>
           <ReactQueryProvider>
-            <ChakraUiProvider>{children}</ChakraUiProvider>
+            <ChakraUiProvider>
+              {children}
+            </ChakraUiProvider>
           </ReactQueryProvider>
         </NextAuthProvider>
       </body>
