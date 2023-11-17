@@ -38,9 +38,9 @@ const primary = definePartsStyle((props) => {
   return {
     field: {
       border: '1px solid',
-      borderColor: 'primary.gray',
+      borderColor: 'primary.softDark',
       rounded: 'xl',
-      color: 'primary.gray',
+      color: 'blackAlpha.800',
       bg: 'transparent',
       _placeholder: {
         color: 'primary.gray'
@@ -48,7 +48,7 @@ const primary = definePartsStyle((props) => {
       _invalid: {
         zIndex: 1,
         borderColor: 'red.500',
-        boxShadow: `0 0 0 1px ${getColorVar(theme, 'red.500')}`
+        boxShadow: `0 0 0 1px ${getColorVar(theme, 'red.300')}`
       }
     }
   }
