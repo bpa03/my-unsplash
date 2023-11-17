@@ -19,7 +19,7 @@ export class Server {
     // Middlewares
     this.express.use(express.json())
     this.express.use(express.urlencoded({extended: true}))
-    this.express.use(cors({credentials: true}))
+    this.express.use(cors({credentials: true, origin: '*'}))
     if (process.env.NODE_ENV === 'development') this.express.use(morgan('dev'))
 
     // Routes
