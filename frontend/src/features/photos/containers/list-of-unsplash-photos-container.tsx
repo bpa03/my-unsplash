@@ -1,8 +1,9 @@
 'use client'
 import {FC} from 'react'
-import {Image} from '@chakra-ui/react'
+import {HStack, Spinner} from '@chakra-ui/react'
 import useUnsplashPhotos from '../hooks/use-unsplash-photos'
 import ListOfPhotos from '../components/list-of-photos'
+import Photo from '../components/photo'
 
 const ListOfUnsplashPhotos: FC<object> = () => {
   const {data: photos, isLoading} = useUnsplashPhotos({
@@ -14,16 +15,18 @@ const ListOfUnsplashPhotos: FC<object> = () => {
 
   return (
     <>
-      {isLoading && <h1>Loading photos...</h1>}
+      {isLoading && (
+        <HStack justifyContent="center" mt={24}>
+          <Spinner color="primary.green" size="xl" />
+        </HStack>
+      )}
       {photos && Array.isArray(photos.results) && (
         <ListOfPhotos>
-          {photos.results.map(({id, urls: {full}}) => (
-            <Image
-              src={full}
-              alt="unsplash-photos"
-              width="100%"
+          {photos.results.map(({id, urls: {regular}}) => (
+            <Photo
               key={id}
-              rounded="16px"
+              alt="unsplash-image"
+              src={regular}
             />
           ))}
         </ListOfPhotos>
