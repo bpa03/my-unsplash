@@ -1,20 +1,16 @@
 import {useQuery, UseQueryOptions} from '@tanstack/react-query'
-import {useSearchParams} from 'next/navigation'
-import {searchPhotosFromUnsplash} from '../api/search-photos-from-unsplash'
-import {SearchPhotosFromUnsplashDto} from '../types'
+import {UnsplashPhoto} from '../types'
+import {getPhotosFromUnsplash} from '../api/get-photos-from-unsplash'
 
 type UseUnsplashPhotosOptions = {
-  config?: Omit<UseQueryOptions<unknown, Error, SearchPhotosFromUnsplashDto>, 'queryKey'>
+  config?: Omit<UseQueryOptions<unknown, Error, UnsplashPhoto[]>, 'queryKey'>
 }
 
 export default function useUnsplashPhotos({config}: UseUnsplashPhotosOptions) {
-  const searchParams = useSearchParams()
-  const query = searchParams.get('query') ?? ''
-
   return useQuery({
-    queryFn: () => searchPhotosFromUnsplash(query),
+    queryFn: () => getPhotosFromUnsplash(),
     staleTime: 0,
-    queryKey: ['unsplash-photos', query],
+    queryKey: ['unsplash-photos'],
     ...config
   })
 }

@@ -1,7 +1,7 @@
 import {SearchPhotosFromUnsplashDto} from '../types'
 
 export async function searchPhotosFromUnsplash(query: string): Promise<Array<SearchPhotosFromUnsplashDto>> {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_UNPLASH_API_URL}/search/photos?query=${query}`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_UNPLASH_API_URL}/search/photos?query=${query}&per_page=15`, {
     headers: {
       Accept: 'application/json',
       Authorization: `Client-ID ${process.env.NEXT_PUBLIC_UNPLASH_ACCESS_KEY}`

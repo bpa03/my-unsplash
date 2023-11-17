@@ -16,7 +16,7 @@ const Searchbox: FC<object> = () => {
 
  return (
    <form onSubmit={handleSubmit(({query}) => {
-    router.push(`?query=${query}`)
+    router.push(`/photos/search?query=${query}`)
    })}>
     <Input {...register('query')} type="text" />
    </form>
