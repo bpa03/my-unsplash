@@ -20,9 +20,9 @@ const ListOfUnsplashPhotos: FC<object> = () => {
           <Spinner color="primary.green" size="xl" />
         </HStack>
       )}
-      {photos && Array.isArray(photos.results) && (
+      {photos && Array.isArray(photos) && (
         <ListOfPhotos>
-          {photos.results.map(({id, urls: {regular}}) => (
+          {photos.map(({id, urls: {regular}}) => (
             <Photo
               key={id}
               alt="unsplash-image"
