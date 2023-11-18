@@ -3,7 +3,7 @@ import {FC} from 'react'
 import {HStack, Spinner} from '@chakra-ui/react'
 import useUnsplashPhotos from '../hooks/use-unsplash-photos'
 import ListOfPhotos from '../components/list-of-photos'
-import Photo from '../components/photo'
+import UnsplashPhoto from '../components/unsplash-photo'
 
 const ListOfUnsplashPhotos: FC<object> = () => {
   const {data: photos, isLoading} = useUnsplashPhotos({
@@ -23,7 +23,7 @@ const ListOfUnsplashPhotos: FC<object> = () => {
       {photos && Array.isArray(photos) && (
         <ListOfPhotos>
           {photos.map(({id, urls: {regular}}) => (
-            <Photo
+            <UnsplashPhoto
               key={id}
               alt="unsplash-image"
               src={regular}

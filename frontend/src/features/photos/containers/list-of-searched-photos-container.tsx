@@ -2,7 +2,7 @@
 import {FC} from 'react'
 import {HStack, Spinner} from '@chakra-ui/react'
 import ListOfPhotos from '../components/list-of-photos'
-import Photo from '../components/photo'
+import UnsplashPhoto from '../components/unsplash-photo'
 import useSearchUnsplashPhotos from '../hooks/use-search-unsplash-photos'
 
 const ListOfSearchedUnsplashPhotos: FC<object> = () => {
@@ -23,7 +23,7 @@ const ListOfSearchedUnsplashPhotos: FC<object> = () => {
       {photos && Array.isArray(photos?.results) && (
         <ListOfPhotos>
           {photos.results.map(({id, urls: {regular}}) => (
-            <Photo
+            <UnsplashPhoto
               key={id}
               alt="unsplash-image"
               src={regular}
