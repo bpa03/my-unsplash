@@ -11,7 +11,7 @@ const LogoutButtonContainer: FC<LogoutButtonContainerProps> = () => {
 
   const handleLogout = () => {
     setLoading(true)
-    signOut({redirect: false})
+    signOut({redirect: true, callbackUrl: '/'})
       .then(() =>
         toast({
           title: 'See you later ;)',
