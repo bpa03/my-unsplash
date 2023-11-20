@@ -104,3 +104,22 @@ export interface SearchPhotosFromUnsplashDto {
   total_pages: number;
   results:     UnsplashPhoto[];
 }
+
+export interface SavePhotoDto {
+  description: string;
+  imageUrl: string;
+}
+
+export interface ProfilePhotosDto {
+  data: {
+    images: ProfilePhoto[]
+  };
+}
+
+export interface ProfilePhoto {
+  userId:      string;
+  id:          string;
+  description: string;
+  imageUrl:    string;
+  createdAt:   Date;
+}
