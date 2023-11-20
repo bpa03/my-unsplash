@@ -1,15 +1,16 @@
 import {FC, useState} from 'react'
-import {Image, Box, Button, HStack} from '@chakra-ui/react'
+import {Image, Box, HStack} from '@chakra-ui/react'
 import {Spinner} from '@chakra-ui/react'
-import {HiOutlineDownload} from 'react-icons/hi'
 import SavePhotoFormContainer from '../containers/save-photo-form-container'
+import DownloadUnsplashPhotoContainer from '../containers/download-unsplash-photo-container'
 
 interface UnsplashPhotoProps {
   src: string
   alt: string
+  download: string
 }
 
-const UnsplashPhoto: FC<UnsplashPhotoProps> = ({alt, src}) => {
+const UnsplashPhoto: FC<UnsplashPhotoProps> = ({alt, src, download}) => {
   const [loading, setLoading] = useState(true)
 
   return (
@@ -45,16 +46,7 @@ const UnsplashPhoto: FC<UnsplashPhotoProps> = ({alt, src}) => {
       >
         <HStack justifyContent="flex-end" alignItems="flex-start">
           <SavePhotoFormContainer imageUrl={src} />
-					<Button
-            px={2}
-            py={1.5}
-            rounded="base"
-            aria-describedby="Download image"
-            _hover={{bg: 'green.600'}}
-            transition="background .3s ease"
-          >
-            <HiOutlineDownload size="1.5rem" />
-          </Button>
+          <DownloadUnsplashPhotoContainer downloadUrl={download} />
         </HStack>
       </Box>
       <Image

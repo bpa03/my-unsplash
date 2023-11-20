@@ -22,11 +22,12 @@ const ListOfSearchedUnsplashPhotos: FC<object> = () => {
       )}
       {photos && Array.isArray(photos?.results) && (
         <ListOfPhotos>
-          {photos.results.map(({id, urls: {regular}}) => (
+          {photos.results.map(({id, urls: {regular}, links: {download_location}}) => (
             <UnsplashPhoto
               key={id}
               alt="unsplash-image"
               src={regular}
+              download={download_location}
             />
           ))}
         </ListOfPhotos>
