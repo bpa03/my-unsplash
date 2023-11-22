@@ -35,6 +35,7 @@ const LoginModalContainer: FC<LoginModalContainerProps> = ({isOpen, onClose}) =>
             duration: 1500,
             position: 'top-right'
           })
+          return
         }
 
         onClose()

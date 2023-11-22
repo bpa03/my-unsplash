@@ -17,7 +17,7 @@ const Header: FC<HeaderProps> = () => {
   return (
     <Box as="header">
       <HStack justifyContent="space-between">
-        <Box flex=".3">
+        <Box>
           <Searchbox />
         </Box>
         {status === 'loading' && <Spinner size="md" color="primary.green" />}
