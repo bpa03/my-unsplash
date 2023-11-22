@@ -1,7 +1,7 @@
 'use client'
 import {FC} from 'react'
 import {HStack, Spinner} from '@chakra-ui/react'
-import ProfilePhoto from '../components/profile-photo'
+import ProfilePhoto from '../containers/profile-photo-container'
 import ListOfPhotos from '../components/list-of-photos'
 import useProfilePhotos from '../hooks/use-profile-photos'
 
@@ -26,8 +26,9 @@ const ListOfProfilePhotosContainer: FC<ListOfProfilePhotosContainerProps> = () =
 		<ListOfPhotos>
 			{photos.data.images.map(({id, imageUrl, description}) => (
 				<ProfilePhoto
-					description={description}
 					key={id}
+					description={description}
+					id={id}
 					alt="profile-photo.jpg"
 					imageUrl={imageUrl}
 				/>
