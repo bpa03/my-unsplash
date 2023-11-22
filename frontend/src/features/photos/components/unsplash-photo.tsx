@@ -1,16 +1,26 @@
 import {FC, useState} from 'react'
 import {Image, Box, HStack} from '@chakra-ui/react'
-import {Spinner} from '@chakra-ui/react'
-import SavePhotoFormContainer from '../containers/save-photo-form-container'
-import DownloadUnsplashPhotoContainer from '../containers/download-unsplash-photo-container'
+import {Spinner, Button} from '@chakra-ui/react'
+import {RxPlus} from 'react-icons/rx'
+import {HiOutlineDownload} from 'react-icons/hi'
 
 interface UnsplashPhotoProps {
   src: string
   alt: string
-  download: string
+  isDownloading: boolean
+  onOpenSaveModal: () => void
+  onDownload: () => void
+  userIsLogged: boolean
 }
 
-const UnsplashPhoto: FC<UnsplashPhotoProps> = ({alt, src, download}) => {
+const UnsplashPhoto: FC<UnsplashPhotoProps> = ({
+  alt,
+  src,
+  onOpenSaveModal,
+  isDownloading,
+  onDownload,
+  userIsLogged
+}) => {
   const [loading, setLoading] = useState(true)
 
   return (
@@ -29,7 +39,10 @@ const UnsplashPhoto: FC<UnsplashPhotoProps> = ({alt, src, download}) => {
           top="50%"
           transform="translate(-50%, -50%)"
         >
-          <Spinner color="primary.green" size="md" />
+          <Spinner
+            color="primary.green"
+            size="md"
+          />
         </Box>
       )}
       <Box
@@ -44,9 +57,35 @@ const UnsplashPhoto: FC<UnsplashPhotoProps> = ({alt, src, download}) => {
         _hover={{opacity: 1}}
         bgImage="linear-gradient(180deg,#00000057 0,rgba(0,0,0,.338) 3.5%,rgba(0,0,0,.324) 7%,rgba(0,0,0,.306) 10.35%,rgba(0,0,0,.285) 13.85%,rgba(0,0,0,.262) 17.35%,rgba(0,0,0,.237) 20.85%,rgba(0,0,0,.213) 24.35%,rgba(0,0,0,.188) 27.85%,rgba(0,0,0,.165) 31.35%,rgba(0,0,0,.144) 34.85%,rgba(0,0,0,.126) 38.35%,rgba(0,0,0,.112) 41.85%,rgba(0,0,0,.103) 45.35%,#0000001a 48.85%,rgba(0,0,0,.103) 52.35%,rgba(0,0,0,.112) 55.85%,rgba(0,0,0,.126) 59.35%,rgba(0,0,0,.144) 62.85%,rgba(0,0,0,.165) 66.35%,rgba(0,0,0,.188) 69.85%,rgba(0,0,0,.213) 73.35%,rgba(0,0,0,.237) 76.85%,rgba(0,0,0,.262) 80.35%,rgba(0,0,0,.285) 83.85%,rgba(0,0,0,.306) 87.35%,rgba(0,0,0,.324) 90.85%,rgba(0,0,0,.338) 94.35%,rgba(0,0,0,.347) 97.85%,#00000059)"
       >
-        <HStack justifyContent="flex-end" alignItems="flex-start">
-          <SavePhotoFormContainer imageUrl={src} />
-          <DownloadUnsplashPhotoContainer downloadUrl={download} />
+        <HStack
+          justifyContent="flex-end"
+          alignItems="flex-start"
+        >
+          {userIsLogged && (
+            <Button
+              px={2}
+              py={1.5}
+              rounded="base"
+              aria-describedby="Add image"
+              _hover={{bg: 'green.600'}}
+              transition="background .3s ease"
+              onClick={onOpenSaveModal}
+            >
+              <RxPlus size="1.5rem" />
+            </Button>
+          )}
+          <Button
+            px={2}
+            py={1.5}
+            rounded="base"
+            aria-describedby="Download image"
+            _hover={{bg: 'green.600'}}
+            transition="background .3s ease"
+            isLoading={isDownloading}
+            onClick={onDownload}
+          >
+            <HiOutlineDownload size="1.5rem" />
+          </Button>
         </HStack>
       </Box>
       <Image

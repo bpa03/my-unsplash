@@ -2,7 +2,7 @@
 import {FC} from 'react'
 import {HStack, Spinner} from '@chakra-ui/react'
 import ListOfPhotos from '../components/list-of-photos'
-import UnsplashPhoto from '../components/unsplash-photo'
+import UnsplashPhoto from '../containers/unsplash-photo-container'
 import useSearchUnsplashPhotos from '../hooks/use-search-unsplash-photos'
 
 const ListOfSearchedUnsplashPhotos: FC<object> = () => {
@@ -27,7 +27,7 @@ const ListOfSearchedUnsplashPhotos: FC<object> = () => {
               key={id}
               alt="unsplash-image"
               src={regular}
-              download={download_location}
+              downloadUrl={download_location}
             />
           ))}
         </ListOfPhotos>
