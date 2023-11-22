@@ -12,7 +12,7 @@ export default async function savePhoto(token: string, photo: SavePhotoDto): Pro
   })
 
   if (!response.ok) {
-    throw new Error('Error on fetch profile photos')
+    throw new Error('Error on save profile photo')
   }
 
   const photos = await response.json()

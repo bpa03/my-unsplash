@@ -1,3 +1,4 @@
+import {FetchError} from '@/features/shared/exceptions/fetch-error'
 import {ProfilePhotosDto} from '../types'
 
 export default async function getProfilePhotos(token: string): Promise<ProfilePhotosDto> {
@@ -10,7 +11,7 @@ export default async function getProfilePhotos(token: string): Promise<ProfilePh
   })
 
   if (!response.ok) {
-    throw new Error('Error on fetch profile photos')
+    throw new FetchError('Fetch error on get profile photos', response.status)
   }
 
   const photos = await response.json()
