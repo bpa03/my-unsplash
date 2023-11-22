@@ -62,7 +62,7 @@ const LoginModal: FC<LoginModalProps> = ({onSubmit, loading, isOpen, onClose}) =
                   <FormLabel fontSize="sm" color="primary.softDark">
                     Email
                   </FormLabel>
-                  <Input type="text" {...register('email')} autoComplete="off" />
+                  <Input type="text" {...register('email')} autoComplete="off" placeholder="example@emil.com" />
                   {!!errors.email?.message && (
                     <FormErrorMessage>{errors.email.message}</FormErrorMessage>
                   )}
@@ -71,7 +71,7 @@ const LoginModal: FC<LoginModalProps> = ({onSubmit, loading, isOpen, onClose}) =
                   <FormLabel fontSize="sm" color="primary.softDark">
                     Password
                   </FormLabel>
-                  <Input type="password" {...register('password')} />
+                  <Input type="password" {...register('password')} placeholder="12345678" />
                   {!!errors.password?.message && (
                     <FormErrorMessage>
                       {errors.password.message}
