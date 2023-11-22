@@ -1,5 +1,6 @@
 import {FC, useState, useCallback} from 'react'
 import {useSession} from 'next-auth/react'
+import {signOut} from 'next-auth/react'
 import useSavePhoto from '../hooks/use-save-photo'
 import SavePhotoForm from '../components/save-photo-form'
 import UnsplashPhoto from '../components/unsplash-photo'
@@ -39,12 +40,29 @@ const UnsplashPhotoContainer: FC<UnsplashPhotoContainerProps> = ({
         })
         setTimeout(() => onClose(), 500)
       },
-      onError: () => {
-        toast({
-          status: 'error',
-          duration: 1500,
-          title: 'Error on save photo'
-        })
+      onError: (err) => {
+        switch (err.status) {
+          case 401: {
+            toast({
+              status: 'error',
+              duration: 1500,
+              title: 'The session has expired. Please login',
+              containerStyle: {
+                bgColor: 'red.500'
+              }
+            })
+            onClose()
+            signOut({redirect: true})
+            break
+          }
+          default: {
+            toast({
+              status: 'error',
+              duration: 1500,
+              title: 'Unknown error on save photo. We are working to solve the problem'
+            })
+          }
+        }
       }
     }
   })

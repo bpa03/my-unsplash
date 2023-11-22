@@ -1,4 +1,5 @@
 import {SavePhotoDto} from '../types'
+import {FetchError} from '@/features/shared/exceptions/fetch-error'
 
 export default async function savePhoto(token: string, photo: SavePhotoDto): Promise<unknown> {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/images`, {
@@ -12,7 +13,7 @@ export default async function savePhoto(token: string, photo: SavePhotoDto): Pro
   })
 
   if (!response.ok) {
-    throw new Error('Error on save profile photo')
+    throw new FetchError('Error on save profile photo', response.status)
   }
 
   const photos = await response.json()
