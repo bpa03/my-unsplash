@@ -38,7 +38,7 @@ const primary = definePartsStyle((props) => {
   return {
     field: {
       border: '1px solid',
-      borderColor: 'primary.softDark',
+      borderColor: 'primary.gray',
       rounded: 'xl',
       color: 'blackAlpha.800',
       bg: 'transparent',
