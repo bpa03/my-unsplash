@@ -5,6 +5,7 @@ import {Noto_Sans} from 'next/font/google'
 import {ChakraUiProvider} from '@/providers/chakra-ui'
 import {ReactQueryProvider} from '@/providers/react-query'
 import {NextAuthProvider} from '@/providers/next-auth'
+import UnauthorizedModalServiceProvider from '@/features/auth/components/unauthorized-modal'
 
 const notoSans = Noto_Sans({
   weight: ['400', '500', '600', '700'],
@@ -28,7 +29,9 @@ export default function RootLayout({
         <NextAuthProvider>
           <ReactQueryProvider>
             <ChakraUiProvider>
-              {children}
+              <UnauthorizedModalServiceProvider>
+                {children}
+              </UnauthorizedModalServiceProvider>
             </ChakraUiProvider>
           </ReactQueryProvider>
         </NextAuthProvider>
