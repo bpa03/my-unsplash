@@ -7,29 +7,32 @@ import {useQueryClient} from '@tanstack/react-query'
 import {ProfilePhotosDto} from '../types'
 
 interface ProfilePhotoContainerProps {
-	imageUrl: string
+  imageUrl: string
   description: string
   alt: string
   id: string
 }
 
 const ProfilePhotoContainer: FC<ProfilePhotoContainerProps> = ({alt, description, id, imageUrl}) => {
-	const toast = useToast()
-	const queryClient = useQueryClient()
-	const {mutate, isPending} = useRemovePhoto({
-		config: {
-			onMutate: async (imageId) => {
-				await queryClient.cancelQueries({queryKey: ['profile-photos']})
-				const previousPhotos = queryClient.getQueryData(['profile-photos'])
-				queryClient.setQueryData(['profile-photos'], (old: ProfilePhotosDto) => ({
-					data: {
-						images: old.data.images.filter(({id}) => id !== imageId)
-					}
-				}))
-				return previousPhotos
-			},
-			onError: (err, vars, ctx) => {
-				switch (err.status) {
+  const toast = useToast()
+  const queryClient = useQueryClient()
+  const {mutate, isPending} = useRemovePhoto({
+    config: {
+      onMutate: async (imageId) => {
+        await queryClient.cancelQueries({queryKey: ['profile-photos']})
+        const previousPhotos = queryClient.getQueryData(['profile-photos'])
+        queryClient.setQueryData(
+          ['profile-photos'],
+          (old: ProfilePhotosDto) => ({
+            data: {
+              images: old.data.images.filter(({id}) => id !== imageId)
+            }
+          })
+        )
+        return previousPhotos
+      },
+      onError: (err, vars, ctx) => {
+        switch (err.status) {
           case 401: {
             toast({
               status: 'error',
@@ -50,25 +53,25 @@ const ProfilePhotoContainer: FC<ProfilePhotoContainerProps> = ({alt, description
             })
           }
         }
-				queryClient.setQueryData(['profile-photos'], ctx)
-			},
-			onSettled: () => {
-				queryClient.invalidateQueries({queryKey: ['profile-photos']})
-			}
-		}
-	})
+        queryClient.setQueryData(['profile-photos'], ctx)
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries({queryKey: ['profile-photos']})
+      }
+    }
+  })
 
-	const handleRemovePhoto = () => mutate(id)
+  const handleRemovePhoto = () => mutate(id)
 
- return (
-	 <ProfilePhoto 
-	 	alt={alt}
-		imageUrl={imageUrl}
-		description={description}
-		isRemoving={isPending}
-		onRemove={handleRemovePhoto}
-	 />
- )
+  return (
+    <ProfilePhoto
+      alt={alt}
+      imageUrl={imageUrl}
+      description={description}
+      isRemoving={isPending}
+      onRemove={handleRemovePhoto}
+    />
+  )
 }
 
 export default ProfilePhotoContainer

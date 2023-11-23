@@ -11,13 +11,13 @@ type UseProfilePhotosOptions = {
 }
 
 export default function useProfilePhotos({config}: UseProfilePhotosOptions) {
-	const {data} = useSession()
+  const {data} = useSession()
   const {openModal} = useUnauthorizedModal()
   const query = useQuery({
     queryFn: () => getProfilePhotos(data?.user?.access as string),
     staleTime: 0,
     queryKey: ['profile-photos'],
-		enabled: !!data?.user?.access,
+    enabled: !!data?.user?.access,
     retry: (failureCount, error) => error.status !== 401 && error.status !== 404,
     ...config
   })

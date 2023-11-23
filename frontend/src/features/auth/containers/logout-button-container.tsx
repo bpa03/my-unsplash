@@ -27,7 +27,11 @@ const LogoutButtonContainer: FC<LogoutButtonContainerProps> = () => {
   }
 
   return (
-    <Button onClick={handleLogout} bg="red.500" isLoading={loading}>
+    <Button
+      onClick={handleLogout}
+      bg="red.500"
+      isLoading={loading}
+    >
       Logout
     </Button>
   )

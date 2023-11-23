@@ -20,16 +20,25 @@ type UnauthorizedModalContextService = {
   openModal: (cb?: () => void) => void
 }
 
-const UnauthorizedModalContext = createContext<UnauthorizedModalContextService>({} as UnauthorizedModalContextService)
+const UnauthorizedModalContext = createContext<UnauthorizedModalContextService>(
+  {} as UnauthorizedModalContextService
+)
 export const useUnauthorizedModal = () => useContext(UnauthorizedModalContext)
 
-const UnauthorizedModalServiceProvider = ({children}: {children: React.ReactNode}) => {
+const UnauthorizedModalServiceProvider = ({
+  children
+}: {
+  children: React.ReactNode
+}) => {
   const {isOpen, onOpen, onClose} = useDisclosure()
 
-  const openModalAndRedirect = useCallback((cb?: () => void) => {
-    onOpen()
-    if (cb) cb()
-  }, [onOpen])
+  const openModalAndRedirect = useCallback(
+    (cb?: () => void) => {
+      onOpen()
+      if (cb) cb()
+    },
+    [onOpen]
+  )
 
   return (
     <>
@@ -38,11 +47,20 @@ const UnauthorizedModalServiceProvider = ({children}: {children: React.ReactNode
       >
         {children}
       </UnauthorizedModalContext.Provider>
-      <Modal onClose={onClose} size="xl" isOpen={isOpen} closeOnEsc={false} closeOnOverlayClick={false}>
+      <Modal
+        onClose={onClose}
+        size="xl"
+        isOpen={isOpen}
+        closeOnEsc={false}
+        closeOnOverlayClick={false}
+      >
         <ModalOverlay bg="blackAlpha.600" />
         <ModalContent>
           <ModalHeader>
-            <HStack alignItems="center" spacing={3}>
+            <HStack
+              alignItems="center"
+              spacing={3}
+            >
               <Box
                 as="span"
                 display="flex"
@@ -54,16 +72,33 @@ const UnauthorizedModalServiceProvider = ({children}: {children: React.ReactNode
                 borderColor="primary.green"
                 rounded="xl"
               >
-                <Icon as={FaUserAlt} w={5} h={5} color="primary.green" />
+                <Icon
+                  as={FaUserAlt}
+                  w={5}
+                  h={5}
+                  color="primary.green"
+                />
               </Box>
-              <Text fontSize="xl" color="primary.softDark">
+              <Text
+                fontSize="xl"
+                color="primary.softDark"
+              >
                 The session has expired. Please login
               </Text>
             </HStack>
           </ModalHeader>
           <ModalBody>
-            <Stack justifyContent="center" spacing={4} pb={6} alignItems="center" mt={2.5}>
-              <Spinner color="primary.green" size="xl" />
+            <Stack
+              justifyContent="center"
+              spacing={4}
+              pb={6}
+              alignItems="center"
+              mt={2.5}
+            >
+              <Spinner
+                color="primary.green"
+                size="xl"
+              />
             </Stack>
           </ModalBody>
         </ModalContent>

@@ -89,14 +89,14 @@ const UnsplashPhotoContainer: FC<UnsplashPhotoContainerProps> = ({
 
   return (
     <>
-			<UnsplashPhoto 
-				alt={alt}
-				isDownloading={isDownloading}
-				onDownload={handleDownload}
-				src={src}
-				onOpenSaveModal={onOpen}
-				userIsLogged={status === 'authenticated'}
-			/>
+      <UnsplashPhoto
+        alt={alt}
+        isDownloading={isDownloading}
+        onDownload={handleDownload}
+        src={src}
+        onOpenSaveModal={onOpen}
+        userIsLogged={status === 'authenticated'}
+      />
       <Modal
         isOpen={isOpen}
         onClose={onClose}

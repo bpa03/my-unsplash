@@ -9,7 +9,7 @@ import {IoMdClose} from 'react-icons/io'
 interface ListOfProfilePhotosContainerProps {}
 
 const ListOfProfilePhotosContainer: FC<ListOfProfilePhotosContainerProps> = () => {
-  const {isLoading, data: photos, error} = useProfilePhotos({
+  const {isLoading, data: photos,error} = useProfilePhotos({
     config: {
       refetchOnWindowFocus: false,
       refetchInterval: false
@@ -47,21 +47,21 @@ const ListOfProfilePhotosContainer: FC<ListOfProfilePhotosContainerProps> = () =
           border="1px solid"
           borderColor="red.500"
           p={32}
-					mx="auto"
-					mt={12}
-					display="flex"
-					justifyContent="center"
-					rounded="xl"
-					w="fit-content"
+          mx="auto"
+          mt={12}
+          display="flex"
+          justifyContent="center"
+          rounded="xl"
+          w="fit-content"
         >
           <Box as="span">
-						<Icon
-							as={IoMdClose}
-							color="red.500"
-							w={20}
-							h={20}
-						/>
-					</Box>
+            <Icon
+              as={IoMdClose}
+              color="red.500"
+              w={20}
+              h={20}
+            />
+          </Box>
         </Box>
       )}
     </>

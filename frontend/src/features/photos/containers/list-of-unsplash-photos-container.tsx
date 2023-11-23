@@ -16,8 +16,14 @@ const ListOfUnsplashPhotos: FC<object> = () => {
   return (
     <>
       {isLoading && (
-        <HStack justifyContent="center" mt={24}>
-          <Spinner color="primary.green" size="xl" />
+        <HStack
+          justifyContent="center"
+          mt={24}
+        >
+          <Spinner
+            color="primary.green"
+            size="xl"
+          />
         </HStack>
       )}
       {photos && Array.isArray(photos) && (

@@ -15,20 +15,20 @@ const Searchbox: FC<object> = () => {
     }
   })
 
- return (
-   <form onSubmit={handleSubmit(({query}) => {
-    router.push(`/photos/search?query=${query}`)
-   })}>
-    <InputGroup>
-      <InputLeftElement top="50%" transform="translateY(-50%)" left="8px">
-        <Box as="span" color="primary.gray">
-          <IoSearchOutline size="1.5rem" color="inherit" />
-        </Box>    
-      </InputLeftElement>
-      <Input {...register('query')} type="text" placeholder="Search by name" borderColor="primary.gray" pl={12} />
-    </InputGroup>
-   </form>
- )
+  return (
+    <form onSubmit={handleSubmit(({query}) => {
+      router.push(`/photos/search?query=${query}`)
+    })}>
+      <InputGroup>
+        <InputLeftElement top="50%" transform="translateY(-50%)" left="8px">
+          <Box as="span" color="primary.gray">
+            <IoSearchOutline size="1.5rem" color="inherit" />
+          </Box>    
+        </InputLeftElement>
+        <Input {...register('query')} type="text" placeholder="Search by name" borderColor="primary.gray" pl={12} />
+      </InputGroup>
+    </form>
+  )
 }
 
 export default Searchbox

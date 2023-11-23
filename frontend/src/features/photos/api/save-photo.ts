@@ -5,7 +5,7 @@ export default async function savePhoto(token: string, photo: SavePhotoDto): Pro
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/images`, {
     headers: {
       Accept: 'application/json',
-			'Content-Type': 'application/json',
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
     },
     method: 'POST',
