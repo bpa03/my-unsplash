@@ -14,7 +14,7 @@ import {
 
 const savePhotoFormScheme = yup.object({
   imageUrl: yup.string().required(),
-  description: yup.string().required('Descripción es requerida')
+  description: yup.string().required('Description is required')
 })
 
 type SavePhotoFormData = yup.InferType<typeof savePhotoFormScheme>
@@ -51,13 +51,13 @@ const SavePhotoForm: FC<SavePhotoFormProps> = ({
       <Stack spacing={4}>
         <FormControl isInvalid={!!errors?.description?.message}>
           <FormLabel fontSize="sm" color="primary.softDark">
-            Descripción
+            Description
           </FormLabel>
           <Input
             type="text"
             {...register('description')}
             autoComplete="off"
-            placeholder="Foto de mi equipo favorito..."
+            placeholder="Photo of my favorite team..."
           />
           {!!errors.description?.message && (
             <FormErrorMessage>{errors.description.message}</FormErrorMessage>
@@ -67,13 +67,13 @@ const SavePhotoForm: FC<SavePhotoFormProps> = ({
           <FormLabel fontSize="sm" color="primary.softDark">
             URL
           </FormLabel>
-          <Input type=".imageUrl" {...register('imageUrl')} disabled />
+          <Input type=".imageUrl" {...register('imageUrl')} disabled aria-disabled />
           {!!errors.imageUrl?.message && (
             <FormErrorMessage>{errors.imageUrl.message}</FormErrorMessage>
           )}
         </FormControl>
       </Stack>
-      <Button w="full" mt={4} type="submit" isLoading={loading}>
+      <Button w="full" mt={4} type="submit" isLoading={loading} aria-disabled={loading}>
         Save
       </Button>
     </form>
