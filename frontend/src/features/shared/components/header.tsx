@@ -4,7 +4,7 @@ import NextLink from 'next/link'
 import {Box, HStack, Spinner, Button, Link} from '@chakra-ui/react'
 import {useDisclosure} from '@chakra-ui/react'
 import {useSession} from 'next-auth/react'
-import LoginModalContainer from '../../auth/containers/login-modal-container'
+import LoginFormContainer from '../../auth/containers/login-form-container'
 import LogoutButtonContainer from '@/features/auth/containers/logout-button-container'
 import Searchbox from './searchbox'
 
@@ -34,7 +34,7 @@ const Header: FC<HeaderProps> = () => {
         {status === 'unauthenticated' && (
           <Button onClick={onOpen}>Login</Button>
         )}
-        <LoginModalContainer isOpen={isOpen} onClose={onClose} />
+        <LoginFormContainer isOpen={isOpen} onClose={onClose} />
       </HStack>
     </Box>
   )
