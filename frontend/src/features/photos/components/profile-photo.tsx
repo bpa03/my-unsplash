@@ -57,11 +57,12 @@ const ProfilePhoto: FC<ProfilePhotoProps> = ({
             py={1.5}
             background="red.500"
             rounded="base"
-            aria-describedby="Delete image"
+            aria-label="remove photo"
             _hover={{bg: 'red.700'}}
             transition="background .3s ease"
             onClick={onRemove}
             isLoading={isRemoving}
+            aria-disabled={isRemoving}
           >
             <IoMdClose size="1.5rem" />
           </Button>
