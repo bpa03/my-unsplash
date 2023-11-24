@@ -9,11 +9,7 @@ const Searchbox: FC<object> = () => {
   const router = useRouter()
   const searchParams = useSearchParams()
   const query = searchParams.get('query') ?? ''
-  const {register, handleSubmit} = useForm({
-    defaultValues: {
-      query
-    }
-  })
+  const {register, handleSubmit} = useForm()
 
   return (
     <form onSubmit={handleSubmit(({query}) => {
@@ -25,7 +21,7 @@ const Searchbox: FC<object> = () => {
             <IoSearchOutline size="1.5rem" color="inherit" />
           </Box>    
         </InputLeftElement>
-        <Input {...register('query')} type="text" placeholder="Search by name" borderColor="primary.gray" pl={12} />
+        <Input {...register('query')} type="text" placeholder="Search by name" borderColor="primary.gray" pl={12} defaultValue={query?.toString()}/>
       </InputGroup>
     </form>
   )
