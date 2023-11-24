@@ -42,6 +42,7 @@ const UnsplashPhoto: FC<UnsplashPhotoProps> = ({
           <Spinner
             color="primary.green"
             size="md"
+            aria-label="spinner"
           />
         </Box>
       )}
@@ -66,7 +67,7 @@ const UnsplashPhoto: FC<UnsplashPhotoProps> = ({
               px={2}
               py={1.5}
               rounded="base"
-              aria-describedby="Add image"
+              aria-label="save photo"
               _hover={{bg: 'green.600'}}
               transition="background .3s ease"
               onClick={onOpenSaveModal}
@@ -78,9 +79,10 @@ const UnsplashPhoto: FC<UnsplashPhotoProps> = ({
             px={2}
             py={1.5}
             rounded="base"
-            aria-describedby="Download image"
+            aria-label="Download photo"
             _hover={{bg: 'green.600'}}
             transition="background .3s ease"
+            aria-disabled={isDownloading}
             isLoading={isDownloading}
             onClick={onDownload}
           >
