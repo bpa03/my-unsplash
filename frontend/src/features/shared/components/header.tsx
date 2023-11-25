@@ -32,7 +32,7 @@ const Header: FC<HeaderProps> = () => {
           </HStack>
         )}
         {status === 'unauthenticated' && (
-          <Button onClick={onOpen}>Login</Button>
+          <Button onClick={onOpen} aria-label="open login modal">Login</Button>
         )}
         <LoginFormContainer isOpen={isOpen} onClose={onClose} />
       </HStack>
