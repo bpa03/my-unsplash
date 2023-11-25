@@ -31,6 +31,7 @@ const UnsplashPhoto: FC<UnsplashPhotoProps> = ({
       rounded="xl"
       maxH="min-content"
       overflow="hidden"
+      aria-label="unsplash photo"
     >
       {loading && (
         <Box
