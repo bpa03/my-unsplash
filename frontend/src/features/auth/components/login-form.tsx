@@ -64,7 +64,7 @@ const LoginForm: FC<LoginFormProps> = ({onSubmit, loading}) => {
           )}
         </FormControl>
       </Stack>
-      <Button w="full" mt={4} type="submit" isLoading={loading} aria-disabled={loading}>
+      <Button w="full" mt={4} type="submit" isLoading={loading} aria-disabled={loading} aria-label="login">
         Login
       </Button>
     </form>
