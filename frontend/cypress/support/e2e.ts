@@ -15,6 +15,11 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+import {worker} from '../../__mocks__/browser'
+
+Cypress.on('test:before:run:async', async () => {
+  await worker.start()
+})
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

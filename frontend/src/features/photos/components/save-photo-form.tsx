@@ -47,6 +47,7 @@ const SavePhotoForm: FC<SavePhotoFormProps> = ({
       onSubmit={handleSubmit((form) => {
         onSubmit(form)
       })}
+      id="save-photo-form"
     >
       <Stack spacing={4}>
         <FormControl isInvalid={!!errors?.description?.message}>
