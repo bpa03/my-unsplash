@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint --fix",
     "test": "jest --watch",
-    "cypress:open": "cypress open"
+    "test:unit:ci" : "jest --ci",
+    "test:e2e:ci": "cypress run"
   },
   "dependencies": {
     "@chakra-ui/next-js": "^2.2.0",

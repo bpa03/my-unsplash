@@ -26,14 +26,22 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
 
-Cypress.Commands.add('login', (email: string, password: string) => {
-  cy.session([email, password], () => {
-    cy.visit('/')
-    cy.get('button[aria-label="open login modal"]').click()
-    cy.get('input[name="email"]').type(email)
-    cy.get('input[name="password"]').type(password)
-    cy.get('form button[aria-label="login"]').click()
-    cy.contains(/my photos/i).should('have.attr', 'href', '/profile/photos')
-    cy.contains(/logout/i)
-  })
+Cypress.env('ACCESS_TOKEN', '410e2a987e943feb53b66a35999aa0898da2ffa2b7617504bddfde46fbc7850dae270fbe5412f9919906a6197b0586f2a64bfef9ad990954228bf7ad1a73feec')
+Cypress.env('MOCKED_USER_ID', 'fe20724eaa89a7c5d7d5efcf0645bf7e')
+Cypress.env('MOCKED_EXPIE_SESSION_TIME', '3000-01-01T00:00:00.000Z')
+Cypress.env('MOCKED_SESSION_TOKEN', 'e2e50b396bc59fa8c19d9976d4a9c8273225d10eca106007a806548e8c55e0b3')
+
+Cypress.Commands.add('login', () => {
+  cy.intercept('/api/auth/session', {
+    body: {
+      user: {
+        name: 'John',
+        lastname: 'Doe',
+        access: Cypress.env('ACCESS_TOKEN'),
+        id: Cypress.env('MOCKED_USER_ID')
+      },
+      expires: Cypress.env('MOCKED_EXPIRE_SESSION_TIME')
+    }
+  }).as('session')
+  cy.setCookie('next-auth.session-token', Cypress.env('MOCKED_SESSION_TOKEN'))
 })
